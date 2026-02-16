@@ -3,7 +3,6 @@ from discord import app_commands
 from discord.ext import commands
 import config
 
-
 def _slug(role_name: str) -> str:
     return (
         role_name.lower()
@@ -12,7 +11,6 @@ def _slug(role_name: str) -> str:
         .replace("\\", "_")
         .replace(":", "_")
     )
-
 
 async def _toggle_role(interaction: discord.Interaction, role_name: str):
     guild = interaction.guild
@@ -44,10 +42,8 @@ async def _toggle_role(interaction: discord.Interaction, role_name: str):
         )
 
 
-
 def _medium_button_id(role_name: str) -> str:
     return f"artie:medium:{_slug(role_name)}"
-
 
 class MediumRoleButton(discord.ui.Button):
     def __init__(self, role_name: str):
@@ -61,7 +57,6 @@ class MediumRoleButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         await _toggle_role(interaction, self.role_name)
 
-
 class MediumRolesView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
@@ -71,10 +66,8 @@ class MediumRolesView(discord.ui.View):
             self.add_item(btn)
 
 
-
 def _pronoun_button_id(role_name: str) -> str:
     return f"artie:pronoun:{_slug(role_name)}"
-
 
 class PronounRoleButton(discord.ui.Button):
     def __init__(self, role_name: str):
@@ -88,7 +81,6 @@ class PronounRoleButton(discord.ui.Button):
     async def callback(self, interaction: discord.Interaction):
         await _toggle_role(interaction, self.role_name)
 
-
 class PronounRolesView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
@@ -96,8 +88,6 @@ class PronounRolesView(discord.ui.View):
             btn = PronounRoleButton(rn)
             btn.row = i // 5
             self.add_item(btn)
-
-
 
 class Roles(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -144,3 +134,4 @@ class Roles(commands.Cog):
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Roles(bot))
+
