@@ -11,9 +11,6 @@ RULES_CHANNEL_ID = 1402420197834625045
 ROLES_CHANNEL_ID = 1460725594311495822
 INTRO_CHANNEL_ID = 1460715415440457778
 
-# Path to store reaction-roles message ID (so the bot knows which message to listen to)
-REACTION_ROLES_DATA_PATH = "data/reaction_roles.json"
-
 # Creative ops
 SELF_PROMO_CHANNEL_ID = 1460700818121687186
 JOBS_CHANNEL_ID = 1460498120654721237
@@ -99,6 +96,5 @@ PRONOUN_ROLE_NAMES = ["She/Her", "She/They", "They/Them",
 MEDIUM_ROLE_NAMES = ["Digital", "Traditional", "Painting", "Ink", "Graphite",
                     "3D", "Animation", "Writing", "Photography"]
 
-# Roles for reaction-based opt-in (daily doodle theme & live notifications)
+# Roles for opt-in (daily doodle theme & live notifications); use buttons, no emojis
 NOTIFICATION_ROLE_NAMES = ["Daily Doodler", "Live Viewer"]
-NOTIFICATION_REACTION_EMOJI_NAMES = ["DailyDoodler", "LiveViewer"]
