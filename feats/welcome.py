@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import config
+from feats.utils import reply_mention
 
 # welcome 
 class Welcome(commands.Cog):
@@ -19,7 +20,7 @@ class Welcome(commands.Cog):
         roles_mention = roles.mention if roles else "#roles"
 
         await channel.send(
-            f"Hello {member.mention}, welcome to the Keyresonant Workshop!\n\n"
+            f"Hello {reply_mention(member)}, welcome to the Keyresonant Workshop!\n\n"
             f"You’ll find the key to the rest of the server in {rules_mention}.\n"
             f"When you’re ready, you can shape your presence in {roles_mention}.\n\n"
         )

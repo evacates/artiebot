@@ -7,6 +7,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import config
+from feats.utils import reply_mention
 
 COOLDOWN_SECONDS = 24 * 60 * 60  # 24 hours
 
@@ -237,7 +238,7 @@ class CommissionModal(discord.ui.Modal, title="Post a Commission"):
 
         embed = discord.Embed(
             title=str(self.title_input),
-            description=f"Posted by {interaction.user.mention}"
+            description=f"Posted by {reply_mention(interaction.user)}"
         )
         embed.add_field(name="What I Offer", value=str(self.offer_input), inline=False)
         embed.add_field(name="Prices", value=str(self.prices_input), inline=False)
@@ -307,7 +308,7 @@ class SelfPromoModal(discord.ui.Modal, title="Post a Self-Promo"):
 
         embed = discord.Embed(
             title=str(self.title_input),
-            description=f"Posted by {interaction.user.mention}"
+            description=f"Posted by {reply_mention(interaction.user)}"
         )
         embed.add_field(name="About", value=str(self.about_input), inline=False)
 
@@ -370,7 +371,7 @@ class JobModal(discord.ui.Modal, title="Post a Job / Artist Search"):
         if not isinstance(channel, discord.TextChannel):
             return await interaction.response.send_message("JOBS_CHANNEL_ID is wrong.", ephemeral=True)
 
-        embed = discord.Embed(title=str(self.title_input), description=f"Posted by {interaction.user.mention}")
+        embed = discord.Embed(title=str(self.title_input), description=f"Posted by {reply_mention(interaction.user)}")
         embed.add_field(name="Details", value=str(self.details_input), inline=False)
         embed.add_field(name="Budget / Pay", value=str(self.budget_input), inline=False)
         embed.add_field(name="Timeline", value=str(self.timeline_input), inline=False)

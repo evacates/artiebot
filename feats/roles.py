@@ -122,31 +122,31 @@ class Roles(commands.Cog):
         self.bot.add_view(PronounRolesView())
         self.bot.add_view(NotificationRolesView())
 
-    @app_commands.command(
-        name="post_notification_roles",
-        description="Post the notification roles message (Daily Doodler, Live Viewer). Staff only.",
-    )
-    @app_commands.checks.has_permissions(manage_guild=True)
-    async def post_notification_roles(self, interaction: discord.Interaction):
-        if interaction.guild is None:
-            return await interaction.response.send_message("Server only.", ephemeral=True)
-        channel = interaction.guild.get_channel(config.ROLES_CHANNEL_ID)
-        if not isinstance(channel, discord.TextChannel):
-            return await interaction.response.send_message(
-                "ROLES_CHANNEL_ID is not configured.",
-                ephemeral=True,
-            )
-        lines = [
-            "Would you like to be notified when we post new daily doodles or when <@358397681439080448> is live?",
-            "",
-            "Daily Doodler — pings when there’s a new daily doodle theme",
-            "Live Viewer — pings when <@358397681439080448> is live",
-        ]
-        await channel.send("\n".join(lines), view=NotificationRolesView())
-        await interaction.response.send_message(
-            "Notification roles message posted. Buttons are active.",
-            ephemeral=True,
-        )
+    # @app_commands.command(
+    #     name="post_notification_roles",
+    #     description="Post the notification roles message (Daily Doodler, Live Viewer). Staff only.",
+    # )
+    # @app_commands.checks.has_permissions(manage_guild=True)
+    # async def post_notification_roles(self, interaction: discord.Interaction):
+    #     if interaction.guild is None:
+    #         return await interaction.response.send_message("Server only.", ephemeral=True)
+    #     channel = interaction.guild.get_channel(config.ROLES_CHANNEL_ID)
+    #         if not isinstance(channel, discord.TextChannel):
+    #             return await interaction.response.send_message(
+    #                 "ROLES_CHANNEL_ID is not configured.",
+    #                 ephemeral=True,
+    #             )
+    #         lines = [
+    #             "Would you like to be notified when we post new daily doodles or when <@358397681439080448> is live?",
+    #             "",
+    #             "Daily Doodler — pings when there’s a new daily doodle theme",
+    #             "Live Viewer — pings when <@358397681439080448> is live",
+    #         ]
+    #         await channel.send("\n".join(lines), view=NotificationRolesView())
+    #         await interaction.response.send_message(
+    #             "Notification roles message posted. Buttons are active.",
+    #             ephemeral=True,
+    #         )
 
     # @app_commands.command(
     #     name="post_medium_roles",

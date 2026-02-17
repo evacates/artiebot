@@ -4,6 +4,8 @@
 
 # IDS
 GUILD_ID = 1402420195221438554
+# When Artie replies to this user, he says "mama" instead of @-mentioning them
+MAMA_USER_ID = 442418681742622733
 
 # Welcome IDS
 WELCOME_CHANNEL_ID = 1460698534696325292

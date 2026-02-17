@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+import config
+from feats.utils import reply_mention
+
 
 class GoodBot(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -15,8 +18,12 @@ class GoodBot(commands.Cog):
 
         content = (message.content or "").lower()
 
+        if message.author.id == config.MAMA_USER_ID and "isn't that right?" in content:
+            await message.reply("yes mama", mention_author=False)
+            return
+
         if "good bot" in content:
-            await message.reply(f"Thank you {message.author.mention}.", mention_author=False)
+            await message.reply(f"Thank you {reply_mention(message.author)}.", mention_author=False)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(GoodBot(bot))
