@@ -137,10 +137,10 @@ class Roles(commands.Cog):
                 ephemeral=True,
             )
         lines = [
-            "Would you like to be notified when we post new daily doodles or when @keyresonance is live?",
+            "Would you like to be notified when we post new daily doodles or when <@358397681439080448> is live?",
             "",
             "Daily Doodler — pings when there’s a new daily doodle theme",
-            "Live Viewer — pings when @keyresonance is live",
+            "Live Viewer — pings when <@358397681439080448> is live",
         ]
         await channel.send("\n".join(lines), view=NotificationRolesView())
         await interaction.response.send_message(
