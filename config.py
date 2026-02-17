@@ -76,9 +76,8 @@ DAILY_DOODLE_THEME_EMOJIS = {
     "Dreamscape": "💭",
     "Dystopian": "🏚",
     "Lunar": "🌙",
-    "Vexed": "👿",
+    "Vexxed": "👿",
     "Mechanical": "🤖",
-    # Add more as desired, e.g. "Floral": "🌸", "Frozen": "❄️"
 }
 DAILY_DOODLE_DEFAULT_EMOJI = "✏️"
 
