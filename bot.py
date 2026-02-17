@@ -21,7 +21,8 @@ EXTENSIONS = [
     "feats.promos",
     "feats.lounge",
     "feats.rules_gate",
-    "feats.goodbot"
+    "feats.goodbot",
+    "feats.daily_doodle",
 ]
 
 _synced = False
