@@ -18,7 +18,7 @@ class GoodBot(commands.Cog):
 
         content = (message.content or "").lower()
 
-        if message.author.id == config.MAMA_USER_ID and "isn't that right?" in content:
+        if message.author.id == config.MAMA_USER_ID and "?" in content:
             await message.reply("yes mama", mention_author=False)
             return
 
