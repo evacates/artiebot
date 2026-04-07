@@ -1,5 +1,5 @@
 import asyncio
-from datetime import datetime, timezone, timedelta
+from datetime import date, datetime, timezone, timedelta
 
 import discord
 from discord import app_commands
@@ -23,9 +23,22 @@ def _next_post_utc() -> datetime:
     return today
 
 
-def _theme_for_date(d: datetime) -> str:
+def _theme_index_for_date(d: datetime) -> int:
+    start_tuple = getattr(config, "DAILY_DOODLE_CYCLE_START_DATE_UTC", None)
+    if start_tuple:
+        try:
+            start_date = date(*start_tuple)
+            current_date = d.astimezone(timezone.utc).date()
+            return (current_date - start_date).days % len(config.DAILY_DOODLE_THEMES)
+        except (TypeError, ValueError):
+            pass
+
     day_of_year = d.timetuple().tm_yday
-    idx = (day_of_year - 1) % len(config.DAILY_DOODLE_THEMES)
+    return (day_of_year - 1) % len(config.DAILY_DOODLE_THEMES)
+
+
+def _theme_for_date(d: datetime) -> str:
+    idx = _theme_index_for_date(d)
     return config.DAILY_DOODLE_THEMES[idx]
 
 
@@ -196,6 +209,33 @@ class DailyDoodle(commands.Cog):
                 for emoji, themes in duplicates:
                     dup_lines.append(f"{emoji} → {', '.join(themes)}")
                 await interaction.followup.send("\n".join(dup_lines), ephemeral=True)
+
+    @app_commands.command(
+        name="test_daily_doodle_remaining",
+        description="Post today's prompt-through-end list in this channel (staff only).",
+    )
+    @app_commands.checks.has_permissions(manage_guild=True)
+    async def test_daily_doodle_remaining(self, interaction: discord.Interaction):
+        if interaction.guild is None or interaction.channel is None:
+            return await interaction.response.send_message("Server only.", ephemeral=True)
+
+        await interaction.response.defer()
+
+        now = datetime.now(timezone.utc)
+        start_idx = _theme_index_for_date(now)
+        today_theme = config.DAILY_DOODLE_THEMES[start_idx]
+        lines = [
+            f"**Daily Doodle remaining list (from today):**",
+            f"Starting at #{start_idx + 1}: {today_theme} {_emoji_for_theme(today_theme)}",
+            "",
+        ]
+        for theme in config.DAILY_DOODLE_THEMES[start_idx:]:
+            lines.append(f"{theme} {_emoji_for_theme(theme)}")
+
+        full_text = "\n".join(lines)
+        chunks = [full_text[i : i + 1990] for i in range(0, len(full_text), 1990)]
+        for chunk in chunks:
+            await interaction.followup.send(chunk)
 
 
 async def setup(bot: commands.Bot):
