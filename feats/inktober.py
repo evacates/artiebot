@@ -108,11 +108,11 @@ def _build_message(local_date: date, role_mention: str = "") -> str | None:
 
 def _build_announcement(role_mention: str) -> str:
     return (
-        "🎃 **Keyresonant Workshop Inktober is here!** 🎃\n\n"
-        "Grab your ink and join us for 31 days of spooky, "
-        "strange, and creative prompts.\n\n"
+        "🎃 **The Keyresonant Workshop Inktober begins...** 🎃\n\n"
+        "The page is blank. The month is waiting. Grab your ink and enter a 31-day "
+        "descent into creative prompts.\n\n"
         f"Want a notification for each prompt? Head to <#{config.ROLES_CHANNEL_ID}> "
-        f"and select the **Inktoberer** role. {role_mention}"
+        f"and select the **Inktoberer** role before the first prompt awakens. {role_mention}"
     )
 
 
