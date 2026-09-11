@@ -102,6 +102,14 @@ DAILY_DOODLE_THEMES = list(DAILY_DOODLE_THEME_EMOJIS.keys())
 DAILY_DOODLE_CYCLE_START_DATE_UTC = (2026, 4, 7)
 DAILY_DOODLE_DEFAULT_EMOJI = "✏️"
 
+# Inktober — daily prompts posted during October at 9:00 AM Eastern time.
+INKTOBER_CHANNEL_ID = 1548028160296099983
+INKTOBER_ANNOUNCEMENT_CHANNEL_ID = 1460652513064784028
+INKTOBER_ANNOUNCEMENT_HOUR = 8
+INKTOBER_POST_HOUR = 9
+INKTOBER_POST_MINUTE = 0
+INKTOBER_TIMEZONE = "America/New_York"
+
 
 
 # Roles
@@ -120,5 +128,6 @@ PRONOUN_ROLE_NAMES = ["She/Her", "She/They", "They/Them",
 MEDIUM_ROLE_NAMES = ["Digital", "Traditional", "Painting", "Ink", "Graphite",
                     "3D", "Animation", "Writing", "Photography"]
 
-# Roles for opt-in (daily doodle theme & live notifications); use buttons, no emojis
-NOTIFICATION_ROLE_NAMES = ["Daily Doodler", "Live Viewer"]
+# Roles for opt-in notifications; use buttons, no emojis
+INKTOBERER_ROLE_NAME = "Inktoberer"
+NOTIFICATION_ROLE_NAMES = ["Daily Doodler", "Live Viewer", INKTOBERER_ROLE_NAME]

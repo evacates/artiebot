@@ -23,6 +23,7 @@ EXTENSIONS = [
     "feats.rules_gate",
     "feats.goodbot",
     "feats.daily_doodle",
+    "feats.inktober",
 ]
 
 _synced = False
